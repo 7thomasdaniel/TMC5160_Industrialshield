@@ -219,7 +219,7 @@ private:
  */
 class TMC5160_SPI : public TMC5160 {
 public:
-	TMC5160_SPI( uint8_t chipSelectPin,	// pin to use for the SPI bus SS line
+	TMC5160_SPI( uint32_t chipSelectPin,	// pin to use for the SPI bus SS line
 		uint32_t fclk = DEFAULT_F_CLK,
 		const SPISettings &spiSettings = SPISettings(4000000, MSBFIRST, SPI_MODE3), // spi bus settings to use (max SCK frequency of 4Mhz)
 		SPIClass& spi = SPI ); // spi class to use
@@ -229,7 +229,7 @@ public:
 	uint8_t  readStatus();
 
 private:
-	uint8_t _CS;
+	uint32_t _CS;
 	SPISettings _spiSettings;
 	SPIClass *_spi;
 
