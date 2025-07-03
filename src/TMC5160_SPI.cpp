@@ -24,7 +24,7 @@ SOFTWARE.
 
 #include "TMC5160.h"
 
-TMC5160_SPI::TMC5160_SPI( uint8_t chipSelectPin, uint32_t fclk, const SPISettings &spiSettings, SPIClass &spi )
+TMC5160_SPI::TMC5160_SPI( uint32_t chipSelectPin, uint32_t fclk, const SPISettings &spiSettings, SPIClass &spi )
 : TMC5160(fclk), _CS(chipSelectPin), _spiSettings(spiSettings), _spi(&spi)
 {
 	vTaskDelay(pdMS_TO_TICKS(2));
