@@ -27,19 +27,24 @@ SOFTWARE.
 TMC5160_SPI::TMC5160_SPI( uint8_t chipSelectPin, uint32_t fclk, const SPISettings &spiSettings, SPIClass &spi )
 : TMC5160(fclk), _CS(chipSelectPin), _spiSettings(spiSettings), _spi(&spi)
 {
+	vTaskDelay(pdMS_TO_TICKS(2));
 	pinMode(_CS, OUTPUT);
 	digitalWrite(_CS, HIGH);
+	vTaskDelay(pdMS_TO_TICKS(2));
 }
 
 void TMC5160_SPI::_beginTransaction()
 {
 	_spi->beginTransaction(_spiSettings);
 	digitalWrite(_CS, LOW);
+	vTaskDelay(pdMS_TO_TICKS(5));
 }
 
 void TMC5160_SPI::_endTransaction()
 {
+	vTaskDelay(pdMS_TO_TICKS(2));
 	digitalWrite(_CS, HIGH);
+	vTaskDelay(pdMS_TO_TICKS(3));
 	_spi->endTransaction();
 }
 
